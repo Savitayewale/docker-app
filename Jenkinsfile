@@ -17,9 +17,10 @@ pipeline
             {
               steps
                {           
-                           sh 'rm -rf *'
-			  // sh 'cd docker-app'
-			   sh 'sudo chmod -R 777 /data/projects/docker-app/index.html'
+               sh 'rm -rf *'
+		       sh 'git clone https://github.com/Savitayewale/docker-app.git'
+			   sh 'cd docker-app'
+			   sh 'chmod -R 777 /data/projects/docker-app/index.html'
 			   sh 'docker stop savi sanket rani'
 			   sh 'docker system prune -a -f'
 			   
