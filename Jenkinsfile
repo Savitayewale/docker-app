@@ -1,4 +1,3 @@
-
 pipeline 
     { 
    agent 
@@ -18,21 +17,25 @@ pipeline
             {
               steps
                {           
-		   
-		           sh 'chmod -R 777 /data/projects'
+                           sh 'rm -rf *'
+			   sh 'cd docker-app'
+			   sh 'chmod -R 777 /data/projects/docker-app/index.html'
+			   sh 'docker stop savi sanket rani'
 			   sh 'docker system prune -a -f'
-			   sh 'docker run -itdp --name savi 80:80 httpd bash'
-			   sh 'docker run -itdp --name sanket 90:80 httpd bash'
-                           sh 'docker run -itdp --name rani 8080:80 httpd bash'
-		           sh 'chmod 777 index.html'
-			   sh 'docker cp index.html savi:/usr/local/apache2/htdocs'
-			   sh 'git checkout 22q1'
+			   
+			   sh 'docker run -itdp 80:80 --name savi httpd'
+			   sh 'docker run -itdp 90:80 --name sanket httpd'
+               sh 'docker run -itdp 8080:80 --name rani httpd'
+			   sh 'docker cp /data/projects/docker-app/index.html savi:/usr/local/apache2/htdocs'
+			   
+			   sh 'git checkout 22q1 -f'
+			   sh 'chmod 777 index.html'
 			   sh 'docker cp index.html sanket:/usr/local/apache2/htdocs'
-			   sh 'git checkout 22q2'
+			   sh 'git checkout 22q2 -f'
+			   sh 'chmod 777 index.html'
 			   sh 'docker cp index.html rani:/usr/local/apache2/htdocs'
 
                 }
             }
         }
     }
-
