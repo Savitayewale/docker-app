@@ -17,7 +17,8 @@ pipeline
         stage('slave-1')
             {
               steps
-               {
+               {           
+		          sh 'rm -rf *'
 			   sh 'docker system prune -a -f'
 			   sh 'docker run -itdp --name savi 80:80 httpd bash'
 			   sh 'docker run -itdp --name sanket 90:80 httpd bash'
