@@ -18,7 +18,7 @@ pipeline
             {
               steps
                {           
-		           sh 'rm -rf *'
+		   
 		           sh 'chmod -R 777 /data/projects'
 			   sh 'docker system prune -a -f'
 			   sh 'docker run -itdp --name savi 80:80 httpd bash'
