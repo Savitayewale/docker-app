@@ -19,7 +19,7 @@ pipeline
                {           
                            sh 'rm -rf *'
 			   sh 'cd docker-app'
-			   sh 'chmod -R 777 /data/projects/docker-app/index.html'
+			   sh 'sudo chmod -R 777 /data/projects/docker-app/index.html'
 			   sh 'docker stop savi sanket rani'
 			   sh 'docker system prune -a -f'
 			   
